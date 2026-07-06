@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سلێمانی بێت - Slemani Bet</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- شریتی ڕێکلام لە سەرەوە -->
+    <div class="promo-banner" id="promoBanner">
+        <div class="promo-content">
+            <span class="promo-icon">🎁</span>
+            <span class="promo-text">بۆنوسی یەکەم پارە داخڵ کردن <strong>%150</strong></span>
+            <a href="#deposit" class="promo-btn" onclick="scrollToSection('deposit')">ئێرە دابگرە</a>
+            <button class="promo-close" onclick="closePromo()">✕</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>سلێمانی <span>بێت</span></h1>
+                <p class="logo-sub">SLEMANI BET</p>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="active" onclick="showSection('home')">سەرەکی</a></li>
+                    <li><a href="#games" onclick="showSection('games')">یارییەکان</a></li>
+                    <li><a href="#deposit" onclick="showSection('deposit')">پارە داخڵ کردن</a></li>
+                    <li><a href="#withdraw" onclick="showSection('withdraw')">ڕاکێشان</a></li>
+                    <li><a href="#profile" onclick="showSection('profile')">ئەکاونت</a></li>
+                </ul>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+            <div class="header-actions">
+                <a href="#login" class="btn-login" onclick="showModal('login')">چوونەژوورەوە</a>
+                <a href="#register" class="btn-register" onclick="showModal('register')">تۆمارکردن</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- مۆدالەکان (Login / Register) -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('login')">&times;</span>
+            <h2>چوونەژوورەوە</h2>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <input type="text" id="loginUsername" placeholder="ناوی بەکارهێنەر" required>
+                <input type="password" id="loginPassword" placeholder="وشەی نهێنی" required>
+                <button type="submit">چوونەژوورەوە</button>
+                <p>ئەکاونتت نییە؟ <a href="#" onclick="switchModal('register')">تۆمار بکە</a></p>
+            </form>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('register')">&times;</span>
+            <h2>تۆمارکردن</h2>
+            <form id="registerForm" onsubmit="handleRegister(event)">
+                <input type="text" id="regUsername" placeholder="ناوی بەکارهێنەر" required>
+                <input type="password" id="regPassword" placeholder="وشەی نهێنی" required>
+                <input type="password" id="regConfirm" placeholder="دووبارە وشەی نهێنی" required>
+                <button type="submit">تۆمارکردن</button>
+                <p>ئەکاونتت هەیە؟ <a href="#" onclick="switchModal('login')">چوونەژوورەوە</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========== بەشی سەرەکی (Home) ========== -->
+    <section id="homeSection" class="section active">
+        <div class="hero">
+            <div class="hero-content">
+                <h2>بەخێربێیت بۆ <span>سلێمانی بێت</span></h2>
+                <p>یەکەم پلاتفۆرمی قومارکردنی کوردی</p>
+                <div class="hero-bonus">
+                    <div class="bonus-card">
+                        <div class="bonus-icon">🎁</div>
+                        <h3>%150 بۆنوس</h3>
+                        <p>بۆ یەکەم پارە داخڵ کردن</p>
+                    </div>
+                    <div class="bonus-card">
+                        <div class="bonus-icon">💳</div>
+                        <h3>٤ ڕێگا</h3>
+                        <p>بۆ پارە داخڵ کردن</p>
+                    </div>
+                    <div class="bonus-card">
+                        <div class="bonus-icon">⚡</div>
+                        <h3>خێرا</h3>
+                        <p>ڕاکێشان تا ٢٤ کاتژمێر</p>
+                    </div>
+                </div>
+                <a href="#register" class="btn-hero" onclick="showModal('register')">ئێستا تۆمار بکە</a>
+            </div>
+            <div class="hero-image">
+                <div class="hero-circles">
+                    <div class="circle c1">⚽</div>
+                    <div class="circle c2">🎰</div>
+                    <div class="circle c3">🏀</div>
+                    <div class="circle c4">🎯</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ئامارەکان -->
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number" id="statUsers">١٢٬٤٥٠</span>
+                <span class="stat-label">بەکارهێنەر</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="statGames">٢٨٥+</span>
+                <span class="stat-label">یاری</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="statPayout">٢.٥ م‌</span>
+                <span class="stat-label">دینار ڕاکێشراوە</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="statOnline">٣٤٢</span>
+                <span class="stat-label">بەکارهێنەری سەرهێڵ</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== بەشی یارییەکان (Games) ========== -->
+    <section id="gamesSection" class="section">
+        <div class="section-header">
+            <h2>🎮 یارییەکان</h2>
+            <p>هەموو یارییەکانی 1xBet لە شوێنێکدا</p>
+        </div>
+        
+        <div class="games-categories">
+            <button class="cat-btn active" onclick="filterGames('all')">هەموو</button>
+            <button class="cat-btn" onclick="filterGames('sport')">⚽ وەرزشی</button>
+            <button class="cat-btn" onclick="filterGames('casino')">🎰 کازینۆ</button>
+            <button class="cat-btn" onclick="filterGames('esport')">🎯 ئی سپۆرت</button>
+            <button class="cat-btn" onclick="filterGames('live')">📺 ڕاستەوخۆ</button>
+        </div>
+
+        <div class="games-grid" id="gamesGrid">
+            <!-- یارییەکان بە JavaScript دادەنرێن -->
+        </div>
+    </section>
+
+    <!-- ========== بەشی پارە داخڵ کردن (Deposit) ========== -->
+    <section id="depositSection" class="section">
+        <div class="section-header">
+            <h2>💰 پارە داخڵ کردن</h2>
+            <p>بڕی پارە داخڵ کردن: ١٠٠٬٠٠٠ - ١٬٠٠٠٬٠٠٠ دینار</p>
+        </div>
+
+        <div class="deposit-bonus-notice">
+            <div class="bonus-notice-content">
+                <span class="bonus-notice-icon">🎁</span>
+                <div>
+                    <h3>بۆنوسی تایبەت بۆ یەکەم جار</h3>
+                    <p>کەمترین ١٠٠ هەزار دینار داخڵ بکە = ٢٥٠ هەزار دینار بۆ ئەکاونتت زیاد ئەکرێت!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="payment-methods">
+            <div class="payment-card" onclick="selectPayment('asia')">
+                <div class="payment-icon">💳</div>
+                <h3>کارتی ئاسیا</h3>
+                <p>Asia Cell</p>
+            </div>
+            <div class="payment-card" onclick="selectPayment('zain')">
+                <div class="payment-icon">📱</div>
+                <h3>زەین کاش</h3>
+                <p>Zain Cash</p>
+            </div>
+            <div class="payment-card" onclick="selectPayment('korek')">
+                <div class="payment-icon">🏦</div>
+                <h3>کۆڕەک</h3>
+                <p>Korek</p>
+            </div>
+            <div class="payment-card" onclick="selectPayment('zaincharg')">
+                <div class="payment-icon">📲</div>
+                <h3>زیچارج</h3>
+                <p>ZainCharg: 7870218371</p>
+            </div>
+        </div>
+
+        <div class="deposit-form" id="depositForm" style="display:none;">
+            <h3 id="selectedMethod">پارە داخڵ کردن</h3>
+            <div class="input-group">
+                <label>بڕی پارە (دینار)</label>
+                <input type="number" id="depositAmount" placeholder="بۆ نمونە: 100000" min="100000" max="1000000">
+            </div>
+            <button class="btn-submit" onclick="submitDeposit()">ناردنی داوا</button>
+        </div>
+
+        <div id="zainchargInfo" style="display:none;" class="zaincharg-box">
+            <h3>📲 زیچارج (ZainCharg)</h3>
+            <p>تکایە پارەکە بنێرە بۆ ئەم ژمارەیە:</p>
+            <div class="phone-number">7870218371</div>
+            <p>دوای ناردن، ڕاستەوخۆ بە ئەدمین ڕابگە</p>
+        </div>
+    </section>
+
+    <!-- ========== بەشی ڕاکێشان (Withdraw) ========== -->
+    <section id="withdrawSection" class="section">
+        <div class="section-header">
+            <h2>💸 ڕاکێشان</h2>
+            <p>کەمترین بڕی ڕاکێشان: ٢٥ هەزار دینار</p>
+        </div>
+
+        <div class="withdraw-info">
+            <div class="info-card">
+                <i class="fas fa-clock"></i>
+                <h4>کاتی ڕاکێشان</h4>
+                <p>٢٤ - ٤٨ کاتژمێر</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-shield-alt"></i>
+                <h4>پارێزراو</h4>
+                <p>هەموو مامەڵەکان پارێزراون</p>
+            </div>
+        </div>
+
+        <div class="payment-methods">
+            <div class="payment-card" onclick="selectWithdrawMethod('asia')">
+                <div class="payment-icon">💳</div>
+                <h3>کارتی ئاسیا</h3>
+            </div>
+            <div class="payment-card" onclick="selectWithdrawMethod('zain')">
+                <div class="payment-icon">📱</div>
+                <h3>زەین کاش</h3>
+            </div>
+            <div class="payment-card" onclick="selectWithdrawMethod('korek')">
+                <div class="payment-icon">🏦</div>
+                <h3>کۆڕەک</h3>
+            </div>
+            <div class="payment-card" onclick="selectWithdrawMethod('zaincharg')">
+                <div class="payment-icon">📲</div>
+                <h3>زیچارج</h3>
+            </div>
+        </div>
+
+        <div class="deposit-form" id="withdrawForm" style="display:none;">
+            <h3>ڕاکێشان</h3>
+            <div class="input-group">
+                <label>بڕی ڕاکێشان (دینار)</label>
+                <input type="number" id="withdrawAmount" placeholder="کەمترین: 25000" min="25000">
+            </div>
+            <button class="btn-submit" onclick="submitWithdraw()">ناردنی داوا</button>
+        </div>
+    </section>
+
+    <!-- ========== بەشی ئەکاونت (Profile) ========== -->
+    <section id="profileSection" class="section">
+        <div class="section-header">
+            <h2>👤 ئەکاونتی من</h2>
+        </div>
+
+        <div class="profile-card" id="profileCard">
+            <div class="profile-avatar">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <h3 id="profileName">بەکارهێنەر</h3>
+            <div class="profile-balance">
+                <span>باڵانسی ئەکاونت</span>
+                <h2 id="profileBalance">٠ دینار</h2>
+            </div>
+            <div class="profile-stats">
+                <div>
+                    <span>پارە داخڵ کراو</span>
+                    <strong id="profileDeposit">٠ دینار</strong>
+                </div>
+                <div>
+                    <span>ڕاکێشراوە</span>
+                    <strong id="profileWithdraw">٠ دینار</strong>
+                </div>
+            </div>
+            <button class="btn-logout" onclick="handleLogout()">❌ دەرچوون</button>
+        </div>
+
+        <!-- نەژوورەوە -->
+        <div id="notLoggedIn">
+            <div class="login-prompt">
+                <i class="fas fa-lock"></i>
+                <h3>تۆ نەچوویتە ژوورەوە</h3>
+                <p>تکایە بچۆرە ژوورەوە یان تۆمار بکە بۆ بینینی ئەکاونتەکەت</p>
+                <a href="#" class="btn-hero" onclick="showModal('login')">چوونەژوورەوە</a>
+                <a href="#" class="btn-register" onclick="showModal('register')" style="display:inline-block;margin-top:10px;">تۆمارکردن</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2>سلێمانی <span>بێت</span></h2>
+                <p>یەکەم پلاتفۆرمی قومارکردنی کوردی</p>
+            </div>
+            <div class="footer-links">
+                <h4>بەستەرەکان</h4>
+                <ul>
+                    <li><a href="#" onclick="showSection('home')">سەرەکی</a></li>
+                    <li><a href="#" onclick="showSection('games')">یارییەکان</a></li>
+                    <li><a href="#" onclick="showSection('deposit')">پارە داخڵ کردن</a></li>
+                    <li><a href="#" onclick="showSection('withdraw')">ڕاکێشان</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>پەیوەندی</h4>
+                <p>📱 زیچارج: 7870218371</p>
+                <p>✉️ تێلەگرام: @slemani_admin</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>⚠️ ئەم ماڵپەڕە تەنها بۆ ڕاهێنان و خوێندنە. قومارکردنی ڕاستەقینە نا.</p>
+            <p>&copy; 2026 سلێمانی بێت - Slemani Bet</p>
+        </div>
+    </footer>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
